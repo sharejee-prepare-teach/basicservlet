@@ -7,14 +7,15 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:app-config.xml</param-value>
+        <!--<param-value>classpath:app-config.xml</param-value>-->
+        <param-value>/WEB-INF/spring/root-context.xml</param-value>
     </context-param>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>my-dispatcher-servlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
@@ -22,10 +23,20 @@
             <param-value>classpath:web-config.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+    </servlet>-->
+    <!-- Processes application requests -->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>my-dispatcher-servlet</servlet-name>
+        <servlet-name>appServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
