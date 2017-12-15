@@ -15,7 +15,7 @@ Create Date: 12/15/2017
 @Service
 public class PersonServiceImpl implements PersonService {
     @Autowired
-    public PersonDAO personDAO;
+    private PersonDAO personDAO;
 
     @Override
     @Transactional

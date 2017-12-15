@@ -19,7 +19,7 @@ Create Date: 12/15/2017
 public class PersonDAOImpl implements PersonDAO {
 
     @Autowired
-    public SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     private static final Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
 
