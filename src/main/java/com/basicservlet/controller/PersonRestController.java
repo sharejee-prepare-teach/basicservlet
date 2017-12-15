@@ -18,7 +18,7 @@ Create Date: 12/15/2017
 */
 @RestController
 @RequestMapping(value = "/rest/persons")
-public class PersonController {
+public class PersonRestController {
     @Autowired
     private PersonService personService;
 
