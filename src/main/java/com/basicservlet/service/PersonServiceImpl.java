@@ -24,21 +24,25 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @Transactional
     public Person getByPersonId(int id) {
         return personDAO.getPersonById(id);
     }
 
     @Override
+    @Transactional
     public void addPerson(Person person) {
         personDAO.addPerson(person);
     }
 
     @Override
+    @Transactional
     public void updatePerson(Person person) {
         personDAO.updatePerson(person);
     }
 
     @Override
+    @Transactional
     public void removePerson(int id) {
         personDAO.removePerson(id);
     }
