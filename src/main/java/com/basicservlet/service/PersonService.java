@@ -11,10 +11,10 @@ Create Date: 12/15/2017
 */
 public interface PersonService {
     List<Person> listPersons();
-   /* Person getByPersonId(int id);
+    Person getByPersonId(int id);
 
     void addPerson(Person person);
     void updatePerson(Person person);
-    void removePerson(int id);*/
+    void removePerson(int id);
 
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +30,34 @@ public class PersonDAOImpl implements PersonDAO {
             logger.info("Person List::"+p);
         }
         return personList;
+    }
+
+    @Override
+    public Person getPersonById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Person person = (Person) session.load(Person.class,new Integer(id));
+        return person;
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(person);
+    }
+
+    @Override
+    public void updatePerson(Person person) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(person);
+    }
+
+    @Override
+    public void removePerson(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Person person = (Person) session.load(Person.class,new Integer(id));
+        if (person != null) {
+            session.delete(person);
+        }
     }
 
 }

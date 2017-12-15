@@ -10,10 +10,10 @@ Create Date: 12/15/2017
 */
 public interface PersonDAO {
     List<Person> listPersons();
-   /* Person getPersonById(int id);
+    Person getPersonById(int id);
 
     void addPerson(Person person);
     void updatePerson(Person person);
-    void removePerson(int id);*/
+    void removePerson(int id);
 
 }
