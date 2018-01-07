@@ -15,10 +15,16 @@ import org.springframework.stereotype.Component;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+    /*@Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("user").
+                password("123456").roles("USER");
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("hasRole(ROLE_USER)")
+                .antMatchers("/admin*//**").hasRole("hasRole(ROLE_USER)")
                 .and()
                 .formLogin().loginPage("/login").failureUrl("/login?error")
                 .defaultSuccessUrl("/welcome")
@@ -27,12 +33,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logout().logoutSuccessUrl("/login?logout")
                 .and().csrf().disable();
         ;
+    }*/
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("user").password("123456").roles("USER");
     }
 
-    @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").
-                password("123456").roles("USER");
+    //.csrf() is optional, enabled by default, if using WebSecurityConfigurerAdapter constructor
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests()
+                .antMatchers("/admin/**").access("hasRole('ROLE_USER')")
+                .and()
+                .formLogin().loginPage("/login").failureUrl("/login?error")
+                .defaultSuccessUrl("/welcome")
+                .usernameParameter("username").passwordParameter("password")
+                .and()
+                .logout().logoutSuccessUrl("/login?logout")
+                .and()
+                .csrf();
     }
+
 }
